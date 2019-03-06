@@ -1,0 +1,6 @@
+# further slim the installed packages
+
+path-exclude /usr/share/doc/*
+path-exclude /usr/share/lintian/*
+path-exclude /usr/share/locale/*
+path-exclude /usr/share/omf/*

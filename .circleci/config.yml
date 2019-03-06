@@ -1,0 +1,14 @@
+version: 2
+
+jobs:
+  build:
+    docker:
+      - image: docker:18.06.1-ce-git
+    working_directory: ~/turnkey-base
+    steps:
+      - checkout
+      - setup_remote_docker
+      - run: docker login -u $DOCKER_USER -p $DOCKER_PASS
+      - run: docker build -t qrntz/turnkey-base:latest .
+      - run: docker push qrntz/turnkey-base:latest
+
