@@ -5,4 +5,4 @@ COPY overlay /
 SHELL ["/bin/bash", "-c"]
 
 STOPSIGNAL SIGTERM
-ENTRYPOINT ["/bin/bash"]
+ENTRYPOINT ["/bin/bash", "-c"]
