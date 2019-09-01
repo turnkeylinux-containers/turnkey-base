@@ -1,14 +1,13 @@
-version: 2
+version: 2.1
 
-jobs:
-  build:
-    docker:
-      - image: docker:18.06.1-ce-git
-    working_directory: ~/turnkey-base
-    steps:
-      - checkout
-      - setup_remote_docker
-      - run: docker login -u $DOCKER_USER -p $DOCKER_PASS
-      - run: docker build -t qrntz/turnkey-base:latest .
-      - run: docker push qrntz/turnkey-base:latest
+orbs:
+  aws-ecr: circleci/aws-ecr@6.2.0
+
+workflows:
+  build_and_push_image:
+    jobs:
+      - aws-ecr/build-and-push-image:
+          context: awsecr
+          create-repo: true
+          repo: $CIRCLE_PROJECT_REPONAME
 
